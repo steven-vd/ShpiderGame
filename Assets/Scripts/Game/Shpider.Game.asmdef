@@ -1,0 +1,16 @@
+{
+    "name": "Shpider.Game",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7124b33c495c94a46825a4ebade30dcf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
