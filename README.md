@@ -6,6 +6,8 @@ You must kill Basement Dweller (currently represented by a gray capsule).
 
 You kill him by sabotaging the **green** objects (sabotaging is currently not implemented).
 
+All **red** objects kill you on touch (not implemented yet, so just try not to touch them).
+
 ## Controls
 * W - move forward
 * A/D - turn left/right
