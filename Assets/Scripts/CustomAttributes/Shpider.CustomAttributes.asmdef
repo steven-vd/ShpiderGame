@@ -1,12 +1,8 @@
 {
-    "name": "Shpider.Editor",
+    "name": "ShpiderGame.CustomAttributes",
     "rootNamespace": "",
-    "references": [
-        "ShpiderGame.CustomAttributes"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
