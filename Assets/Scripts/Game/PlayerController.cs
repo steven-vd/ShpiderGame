@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public bool grounded = false;
 
 	void FixedUpdate() {
+		// Movement
 		if (Input.GetKey(KeyCode.W)) {
 			transform.parent.Translate(transform.forward * moveSpeed, Space.World);
 		}
@@ -26,6 +27,13 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		RaycastHit hit;
+		// Interact
+		if (Input.GetKeyDown(KeyCode.E)) {
+			if (Physics.Raycast(transform.position, transform.forward, out hit, 10f)) {
+				hit.transform.GetComponent<IInteractable>().Interact();
+			}
+		}
+
 		if (Physics.Raycast(transform.position, transform.forward, out hit, surfaceStickDistance)) {
 			transform.parent.up = hit.normal;
 			if (Physics.Raycast(transform.position, transform.forward, out hit, surfaceStickDistance)) {
@@ -36,7 +44,8 @@ public class PlayerController : MonoBehaviour {
 
 		velocity.y -= gravity;
 		grounded = false;
-		if (velocity.y < 0 && Physics.Raycast(transform.position, -transform.up, out hit, surfaceStickDistance)) {
+		int layers = ~(1 << 8); // Ignore interactables
+		if (velocity.y < 0 && Physics.Raycast(transform.position, -transform.up, out hit, surfaceStickDistance, layers)) {
 			grounded = true;
 			if (hit.distance < surfaceStickDistance * 0.99f) {
 				//Adjust position if in floor

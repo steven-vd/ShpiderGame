@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 381553357}
   - component: {fileID: 381553356}
   - component: {fileID: 381553355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4563,7 +4563,7 @@ GameObject:
   - component: {fileID: 962298903}
   - component: {fileID: 962298902}
   - component: {fileID: 962298901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Heater (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4693,7 +4693,7 @@ GameObject:
   - component: {fileID: 982055093}
   - component: {fileID: 982055092}
   - component: {fileID: 982055091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   - component: {fileID: 1017216510}
   - component: {fileID: 1017216509}
   - component: {fileID: 1017216508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OilTube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7610,7 +7610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1730548377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8119,7 +8119,7 @@ GameObject:
   - component: {fileID: 1827421865}
   - component: {fileID: 1827421864}
   - component: {fileID: 1827421863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
