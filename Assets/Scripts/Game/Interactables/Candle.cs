@@ -13,10 +13,17 @@ public class Candle : MonoBehaviour, IInteractable {
 
 	public void Interact() {
 		interacted = true;
-        if (HeaterControls.Instance.interacted && LampCable.Instance.interacted && OilPipe.Instance.interacted) {
-            BigInfo.Instance.Print("YOU WON", Color.green, 0);
-        } else {
+        if (!HeaterControls.Instance.interacted) {
+            BigInfo.Instance.Print("HEATER MUST BE ON FIRST", Color.red, .5f);
             PlayerController.Instance.Reset();
+        } else if (OilPipe.Instance.interacted) {
+            BigInfo.Instance.Print("BOILER PIPE MUST BE DESTROYED", Color.red, .5f);
+            PlayerController.Instance.Reset();
+        } else if (LampCable.Instance.interacted) {
+            BigInfo.Instance.Print("CANDLE MUST BE ON", Color.red, .5f);
+            PlayerController.Instance.Reset();
+        } else {
+            BigInfo.Instance.Print("YOU WON", Color.green, 0);
         }
 	}
 
