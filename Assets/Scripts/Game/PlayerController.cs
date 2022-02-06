@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -7,7 +8,10 @@ public class PlayerController : MonoBehaviour {
 	public float moveSpeed, rotateSpeed;
 	public float surfaceStickDistance;
 	public float gravity;
+	public Transform map;
 
+	[ReadOnly]
+	public IInteractable interactableInRange;
 	[ReadOnly]
 	public Vector3 velocity = Vector3.zero;
 	[ReadOnly]
@@ -17,13 +21,46 @@ public class PlayerController : MonoBehaviour {
 		Instance = this;
 	}
 
+	void Update() {
+		// Interact
+		if (Input.GetKeyDown(KeyCode.E)) {
+			if (interactableInRange != null) {
+				interactableInRange.Interact();
+			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		const int interactable = 8;
+		const int killOnTouch = 9;
+		switch (other.gameObject.layer) {
+			case interactable: {
+				interactableInRange = other.GetComponent<IInteractable>();
+				break;
+			} case killOnTouch: {
+				BigInfo.Instance.Print("YOU DIED", Color.red, .5f);
+				Reset();
+				break;
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if (interactableInRange == null) {
+			return;
+		}
+		if (other.gameObject == (interactableInRange as MonoBehaviour).gameObject) {
+			interactableInRange = null;
+		}
+	}
+
 	void FixedUpdate() {
 		// Movement
 		if (Input.GetKey(KeyCode.W)) {
 			transform.parent.Translate(transform.forward * moveSpeed, Space.World);
 		}
 		if (Input.GetKey(KeyCode.S)) {
-			transform.parent.Translate(-transform.forward * moveSpeed, Space.World);
+			//transform.parent.Translate(-transform.forward * moveSpeed, Space.World);
 		}
 		if (Input.GetKey(KeyCode.A)) {
 			transform.Rotate(Vector3.up, -rotateSpeed, Space.Self);
@@ -33,14 +70,10 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		RaycastHit hit;
-		// Interact
-		if (Input.GetKeyDown(KeyCode.E)) {
-			if (Physics.Raycast(transform.position, transform.forward, out hit, 10f)) {
-				hit.transform.GetComponent<IInteractable>().Interact();
-			}
-		}
-
-		if (Physics.Raycast(transform.position, transform.forward, out hit, surfaceStickDistance)) {
+		const int interactable = 1 << 8;
+		const int killOnTouch = 1 << 9;
+		const int layer = ~(interactable | killOnTouch);
+		if (Physics.Raycast(transform.position, transform.forward, out hit, surfaceStickDistance, layer)) {
 			transform.parent.up = hit.normal;
 			if (Physics.Raycast(transform.position, transform.forward, out hit, surfaceStickDistance)) {
 				//Make sure spider doesn't get stuck
@@ -64,4 +97,9 @@ public class PlayerController : MonoBehaviour {
 		//Fall
 		transform.parent.Translate(velocity, Space.World);
 	}
+
+	public void Reset() {
+		SceneManager.LoadScene(0);
+	}
+
 }
