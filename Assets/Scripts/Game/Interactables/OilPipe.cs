@@ -11,7 +11,7 @@ public class OilPipe : MonoBehaviour, IInteractable {
 
 	void Update() {
 		if (interacted && HeaterControls.Instance.interacted) {
-			// spill oil
+			transform.GetChild(0).gameObject.SetActive(true);
 		}
 	}
 

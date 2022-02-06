@@ -39,7 +39,11 @@ public class PlayerController : MonoBehaviour {
 				interactableInRange = other.GetComponent<IInteractable>();
 				break;
 			} case killOnTouch: {
-				BigInfo.Instance.Print("YOU DIED", Color.red, .5f);
+				if (other.name == "oilSpill") {
+					BigInfo.Instance.Print("YOU DROWNED IN OIL", Color.red, .5f);
+				} else {
+					BigInfo.Instance.Print("YOU DIED", Color.red, .5f);
+				}
 				Reset();
 				break;
 			}
