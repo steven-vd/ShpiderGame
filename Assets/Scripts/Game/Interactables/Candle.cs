@@ -16,10 +16,10 @@ public class Candle : MonoBehaviour, IInteractable {
         if (!HeaterControls.Instance.interacted) {
             BigInfo.Instance.Print("HEATER MUST BE ON FIRST", Color.red, .5f);
             PlayerController.Instance.Reset();
-        } else if (OilPipe.Instance.interacted) {
+        } else if (!OilPipe.Instance.interacted) {
             BigInfo.Instance.Print("BOILER PIPE MUST BE DESTROYED", Color.red, .5f);
             PlayerController.Instance.Reset();
-        } else if (LampCable.Instance.interacted) {
+        } else if (!LampCable.Instance.interacted) {
             BigInfo.Instance.Print("CANDLE MUST BE ON", Color.red, .5f);
             PlayerController.Instance.Reset();
         } else {
