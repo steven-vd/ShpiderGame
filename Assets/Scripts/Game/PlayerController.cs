@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 		const int killOnTouch = 9;
 		switch (other.gameObject.layer) {
 			case interactable: {
-				SmallInfo.Instance.Print("Press 'E' to interact", Color.green, 0.3f);
+				SmallInfo.Instance.Print("Press 'E' to interact", Color.green, 0f);
 				interactableInRange = other.GetComponent<IInteractable>();
 				break;
 			} case killOnTouch: {
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 		if (other.gameObject == (interactableInRange as MonoBehaviour).gameObject) {
+			SmallInfo.Instance.Print("Press 'E' to interact", Color.green, 1f);
 			interactableInRange = null;
 		}
 	}
