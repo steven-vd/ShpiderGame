@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	public static PlayerController Instance;
+
 	public float moveSpeed, rotateSpeed;
 	public float surfaceStickDistance;
 	public float gravity;
@@ -10,6 +12,10 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 velocity = Vector3.zero;
 	[ReadOnly]
 	public bool grounded = false;
+
+	void Awake() {
+		Instance = this;
+	}
 
 	void FixedUpdate() {
 		// Movement
